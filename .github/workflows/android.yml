@@ -11,11 +11,11 @@ build:
 runs-on: ubuntu-latest
 
 steps:
-# ۱. دریافت کد از مخزن
+
 - name: Checkout Repository
 uses: actions/checkout@v4
 
-# ۲. تنظیم جاوا ۱۷ (مطابق با پروژه شما)
+
 - name: Set up JDK 17
 uses: actions/setup-java@v4
 with:
@@ -23,16 +23,13 @@ java-version: '17'
 distribution: 'temurin'
 cache: gradle
 
-# ۳. دادن اجازه دسترسی به فایل Gradle
+
 - name: Grant execute permission for gradlew
 run: chmod +x gradlew
 
-# ۴. بررسی سلامت کد و ساخت نسخه Debug
-# استفاده از assembleDebug به جای build باعث می‌شود تست‌های سنگین هم اجرا شوند و خروجی APK بگیرید
 - name: Build Debug APK
 run: ./gradlew assembleDebug
 
-# ۵. آپلود فایل APK برای دانلود شما
 - name: Upload APK Artifact
 uses: actions/upload-artifact@v4
 with:
